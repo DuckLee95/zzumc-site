@@ -1,5 +1,5 @@
 <template>
-  <div class="news-page upgraded-news-page">
+  <div class="news-page news-page-mc">
     <div class="container news-page-container">
       <div class="news-topbar">
         <RouterLink class="news-back-link" to="/">
@@ -7,153 +7,192 @@
         </RouterLink>
       </div>
 
-      <div class="news-hero pixel-panel">
-        <div class="news-hero-main">
-          <p class="section-kicker">NEWS CENTER</p>
-          <h1>最新消息</h1>
-          <p class="news-hero-desc">
-            这里是郑爱玩MC的新闻中心。你可以在这里查看活动预告、版本更新、
-            社团动态和重要通知。
-          </p>
-
-          <div class="news-hero-tags">
-            <span class="news-hero-tag">活动预告</span>
-            <span class="news-hero-tag">版本更新</span>
-            <span class="news-hero-tag">社团动态</span>
-            <span class="news-hero-tag">公告通知</span>
-          </div>
-        </div>
-      </div>
-
-      <div v-if="featuredNews" class="news-featured pixel-panel">
-        <div class="news-featured-label">置顶公告</div>
-
-        <div class="news-featured-grid">
-          <div class="news-featured-content">
-            <p class="news-meta-line">
-              <span class="news-meta-chip" :class="featuredNews.tagClass">
-                {{ featuredNews.tag }}
-              </span>
-              <span class="news-meta-date">{{ featuredNews.date }}</span>
-            </p>
-
-            <h2>{{ featuredNews.title }}</h2>
-            <p class="news-featured-desc">
-              {{ featuredNews.desc }}
-            </p>
-
-            <div class="news-featured-actions">
-              <RouterLink
-                class="pixel-btn pixel-btn-primary"
-                :to="`/news/${featuredNews.slug}`"
-              >
-                查看详情
-              </RouterLink>
-
-              <RouterLink class="pixel-btn pixel-btn-dark" to="/docs">
-                查看相关文档
-              </RouterLink>
-            </div>
-          </div>
-
-          <div class="news-featured-side">
-            <div
-              v-for="item in sideHighlights"
-              :key="item.slug"
-              class="news-highlight-card"
-            >
-              <p class="news-highlight-kicker">{{ item.tag }}</p>
-              <h3>{{ item.title }}</h3>
-              <p>{{ item.desc }}</p>
-
-              <div class="news-highlight-actions">
-                <RouterLink
-                  class="news-highlight-link-button"
-                  :to="`/news/${item.slug}`"
-                >
-                  查看详情
-                </RouterLink>
+      <section class="news-feature-block" v-if="hasFeatured">
+        <div class="news-feature-layout">
+          <RouterLink
+            v-if="featured.main"
+            :to="`/news/${featured.main.slug}`"
+            class="news-visual-card featured-main"
+          >
+            <img
+              v-if="featured.main.cover"
+              :src="featured.main.cover"
+              :alt="featured.main.title"
+              class="news-card-image"
+              :style="imageStyle(featured.main)"
+            />
+            <div class="news-card-overlay">
+              <div class="news-card-meta">
+                <span class="news-card-category">{{ featured.main.category }}</span>
+                <span class="news-card-date">{{ featured.main.publishedAt }}</span>
               </div>
+              <h3>{{ featured.main.title }}</h3>
+              <p class="news-card-summary">{{ featured.main.summary }}</p>
             </div>
-          </div>
-        </div>
-      </div>
+          </RouterLink>
 
-      <div class="news-main-layout">
-        <div class="news-list-column">
-          <div class="news-list-head">
-            <h2>新闻列表</h2>
-            <p>点击“查看详情”即可进入单篇新闻正文页。</p>
-          </div>
-
-          <div class="news-list">
-            <article
-              v-for="item in newsList"
-              :key="item.id"
-              class="news-item-card pixel-panel"
+          <div class="featured-side-column">
+            <RouterLink
+              v-if="featured['side-top']"
+              :to="`/news/${featured['side-top'].slug}`"
+              class="news-visual-card featured-side-top"
             >
-              <div class="news-item-top">
-                <div class="news-item-meta">
-                  <span class="news-meta-chip" :class="item.tagClass">
-                    {{ item.tag }}
-                  </span>
-                  <span class="news-meta-date">{{ item.date }}</span>
+              <img
+                v-if="featured['side-top'].cover"
+                :src="featured['side-top'].cover"
+                :alt="featured['side-top'].title"
+                class="news-card-image"
+                :style="imageStyle(featured['side-top'])"
+              />
+              <div class="news-card-overlay">
+                <div class="news-card-meta">
+                  <span class="news-card-category">{{ featured['side-top'].category }}</span>
+                  <span class="news-card-date">{{ featured['side-top'].publishedAt }}</span>
                 </div>
+                <h3>{{ featured['side-top'].title }}</h3>
+                <p class="news-card-summary">{{ featured['side-top'].summary }}</p>
               </div>
+            </RouterLink>
 
-              <h3>{{ item.title }}</h3>
-              <p class="news-item-desc">{{ item.desc }}</p>
+            <div class="featured-bottom-grid">
+              <RouterLink
+                v-if="featured['side-bottom-left']"
+                :to="`/news/${featured['side-bottom-left'].slug}`"
+                class="news-visual-card featured-small"
+              >
+                <img
+                  v-if="featured['side-bottom-left'].cover"
+                  :src="featured['side-bottom-left'].cover"
+                  :alt="featured['side-bottom-left'].title"
+                  class="news-card-image"
+                  :style="imageStyle(featured['side-bottom-left'])"
+                />
+                <div class="news-card-overlay">
+                  <div class="news-card-meta">
+                    <span class="news-card-category">{{ featured['side-bottom-left'].category }}</span>
+                  </div>
+                  <h3>{{ featured['side-bottom-left'].title }}</h3>
+                  <p class="news-card-summary">{{ featured['side-bottom-left'].summary }}</p>
+                </div>
+              </RouterLink>
 
-              <div class="news-item-footer">
-                <RouterLink
-                  class="news-readmore-button"
-                  :to="`/news/${item.slug}`"
-                >
-                  查看详情
-                </RouterLink>
-              </div>
-            </article>
+              <RouterLink
+                v-if="featured['side-bottom-right']"
+                :to="`/news/${featured['side-bottom-right'].slug}`"
+                class="news-visual-card featured-small"
+              >
+                <img
+                  v-if="featured['side-bottom-right'].cover"
+                  :src="featured['side-bottom-right'].cover"
+                  :alt="featured['side-bottom-right'].title"
+                  class="news-card-image"
+                  :style="imageStyle(featured['side-bottom-right'])"
+                />
+                <div class="news-card-overlay">
+                  <div class="news-card-meta">
+                    <span class="news-card-category">{{ featured['side-bottom-right'].category }}</span>
+                  </div>
+                  <h3>{{ featured['side-bottom-right'].title }}</h3>
+                  <p class="news-card-summary">{{ featured['side-bottom-right'].summary }}</p>
+                </div>
+              </RouterLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="news-feed-block">
+        <div class="news-feed-head">
+          <div>
+            <h2>全部新闻</h2>
+            <p>按时间排序，支持标签筛选。</p>
           </div>
         </div>
 
-        <aside class="news-sidebar">
-          <div class="news-side-panel pixel-panel">
-            <h3>消息分类</h3>
-            <div class="news-side-tags">
-              <a href="#">全部</a>
-              <a href="#">活动预告</a>
-              <a href="#">版本更新</a>
-              <a href="#">公告通知</a>
-              <a href="#">社团动态</a>
-            </div>
-          </div>
+        <div class="news-filter-row">
+          <label class="news-filter-label" for="news-tag-select">标签筛选</label>
+          <select
+            id="news-tag-select"
+            v-model="selectedTag"
+            class="news-filter-select"
+          >
+            <option v-for="tag in tags" :key="tag" :value="tag">
+              {{ tag }}
+            </option>
+          </select>
+        </div>
 
-          <div class="news-side-panel pixel-panel">
-            <h3>归档</h3>
-            <ul class="news-archive-list">
-              <li><a href="#">2026 年 4 月</a></li>
-              <li><a href="#">2026 年 3 月</a></li>
-              <li><a href="#">2026 年 2 月</a></li>
-            </ul>
-          </div>
-
-          <div class="news-side-panel pixel-panel">
-            <h3>快速入口</h3>
-            <div class="news-quick-links">
-              <RouterLink to="/docs">帮助文档</RouterLink>
-              <RouterLink to="/downloads">资源下载</RouterLink>
-              <RouterLink to="/contact">联系我们</RouterLink>
+        <div class="news-feed-grid">
+          <RouterLink
+            v-for="item in filteredNews"
+            :key="item.slug"
+            :to="`/news/${item.slug}`"
+            class="news-visual-card news-feed-card"
+          >
+            <img
+              v-if="item.cover"
+              :src="item.cover"
+              :alt="item.title"
+              class="news-card-image"
+              :style="imageStyle(item)"
+            />
+            <div class="news-card-overlay">
+              <div class="news-card-meta">
+                <span class="news-card-category">{{ item.category }}</span>
+                <span class="news-card-date">{{ item.publishedAt }}</span>
+              </div>
+              <h3>{{ item.title }}</h3>
+              <p class="news-card-summary">{{ item.summary }}</p>
             </div>
-          </div>
-        </aside>
-      </div>
+          </RouterLink>
+        </div>
+      </section>
     </div>
   </div>
 </template>
 
 <script setup>
-import { newsList } from '../data/news'
+import { computed, onMounted, ref } from 'vue'
+import {
+  fetchNewsPageLayout,
+  fetchNewsTags,
+} from '../lib/newsSource'
 
-const featuredNews = newsList[0]
-const sideHighlights = newsList.slice(1, 3)
+const allNews = ref([])
+const featured = ref({
+  main: null,
+  'side-top': null,
+  'side-bottom-left': null,
+  'side-bottom-right': null,
+})
+const tags = ref(['全部'])
+const selectedTag = ref('全部')
+
+const hasFeatured = computed(() =>
+  Object.values(featured.value).some(Boolean)
+)
+
+const filteredNews = computed(() => {
+  return allNews.value.filter((item) => {
+    return selectedTag.value === '全部' || item.tags.includes(selectedTag.value)
+  })
+})
+
+function imageStyle(item) {
+  return {
+    objectFit: item.imageFit || 'cover',
+    objectPosition: item.imagePosition || 'center center',
+  }
+}
+
+onMounted(async () => {
+  const [{ featured: featuredLayout, all }, allTags] = await Promise.all([
+    fetchNewsPageLayout(),
+    fetchNewsTags(),
+  ])
+
+  featured.value = featuredLayout
+  allNews.value = all
+  tags.value = allTags
+})
 </script>

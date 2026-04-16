@@ -1,71 +1,120 @@
 <template>
-  <div class="news-detail-page">
-    <div class="container news-detail-container" v-if="news">
+  <div class="news-detail-page article-news-page" v-if="news">
+    <div class="news-detail-cover-hero" v-if="news.cover">
+      <img
+        :src="news.cover"
+        :alt="news.title"
+        :style="{
+          objectFit: news.detailImageFit || 'contain',
+          objectPosition: news.detailImagePosition || 'center center'
+        }"
+      />
+      <div class="news-detail-cover-mask"></div>
+    </div>
+
+    <div class="container news-detail-container">
       <div class="news-detail-topbar">
         <RouterLink class="news-back-link" to="/news">
           ← 返回新闻列表
         </RouterLink>
       </div>
 
-      <article class="news-detail-article pixel-panel">
-        <div class="news-detail-meta">
-          <span class="news-meta-chip" :class="news.tagClass">{{ news.tag }}</span>
-          <span class="news-meta-date">{{ news.date }}</span>
-        </div>
-
-        <h1>{{ news.title }}</h1>
-        <p class="news-detail-lead">{{ news.desc }}</p>
-
-        <div class="news-detail-cover" v-if="news.cover">
-          <img :src="news.cover" :alt="news.title" />
-        </div>
-
-        <div class="news-detail-content">
-          <template v-for="(block, index) in news.content" :key="index">
-            <p v-if="block.type === 'paragraph'" class="news-detail-paragraph">
-              {{ block.text }}
-            </p>
-
-            <div v-else-if="block.type === 'list'" class="news-detail-list-block">
-              <h3>{{ block.title }}</h3>
-              <ul>
-                <li v-for="(item, idx) in block.items" :key="idx">
-                  {{ item }}
-                </li>
-              </ul>
+      <div class="news-detail-layout">
+        <!-- 左侧作者栏 -->
+        <aside class="news-author-sidebar pixel-panel">
+          <div class="news-author-card">
+            <div class="news-author-avatar-wrap">
+              <img
+                class="news-author-avatar"
+                :src="news.authorAvatar"
+                :alt="news.author"
+              />
             </div>
-          </template>
-        </div>
-      </article>
 
-      <div class="news-detail-bottom-nav">
-        <RouterLink class="pixel-btn pixel-btn-dark" to="/news">
-          返回新闻列表
-        </RouterLink>
-        <RouterLink class="pixel-btn pixel-btn-primary" to="/">
-          返回主页面
-        </RouterLink>
+            <div class="news-author-meta">
+              <p class="news-author-kicker">作者</p>
+              <h3>{{ news.author }}</h3>
+            </div>
+
+            <div class="news-author-info-list">
+              <div class="news-author-info-item">
+                <span class="news-author-info-label">发布日期</span>
+                <strong>{{ news.publishedAt }}</strong>
+              </div>
+
+              <div class="news-author-info-item">
+                <span class="news-author-info-label">分类</span>
+                <strong>{{ news.category }}</strong>
+              </div>
+
+              <div
+                v-if="news.tags && news.tags.length"
+                class="news-author-info-item news-author-tags-wrap"
+              >
+                <span class="news-author-info-label">标签</span>
+                <div class="news-author-tags">
+                  <span
+                    v-for="tag in news.tags"
+                    :key="tag"
+                    class="news-author-tag"
+                  >
+                    {{ tag }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- 右侧正文 -->
+        <main class="news-article-main pixel-panel">
+          <article class="news-article-content">
+            <div class="news-article-head">
+              <h1>{{ news.title }}</h1>
+
+              <p class="news-article-summary">
+                {{ news.summary }}
+              </p>
+            </div>
+
+            <div class="news-article-body" v-html="news.html"></div>
+          </article>
+        </main>
       </div>
     </div>
+  </div>
 
-    <div class="container news-detail-container" v-else>
-      <div class="news-detail-empty pixel-panel">
-        <h1>未找到该新闻</h1>
-        <p>这篇公告可能不存在，或者链接有误。</p>
-        <RouterLink class="pixel-btn pixel-btn-primary" to="/news">
-          返回新闻列表
+  <div class="news-detail-page article-news-page" v-else>
+    <div class="container news-detail-container">
+      <div class="news-detail-topbar">
+        <RouterLink class="news-back-link" to="/news">
+          ← 返回新闻列表
         </RouterLink>
+      </div>
+
+      <div class="news-detail-empty pixel-panel">
+        <h1>未找到新闻</h1>
+        <p>这篇文章可能不存在，或者链接有误。</p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
-import { getNewsBySlug } from '../data/news'
+import { fetchNewsBySlug } from '../lib/newsSource'
 
 const route = useRoute()
+const news = ref(null)
 
-const news = computed(() => getNewsBySlug(route.params.slug))
+watchEffect(async () => {
+  const slug = String(route.params.slug || '')
+  if (!slug) {
+    news.value = null
+    return
+  }
+
+  news.value = await fetchNewsBySlug(slug)
+})
 </script>

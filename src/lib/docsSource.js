@@ -11,7 +11,7 @@ function slugify(text) {
     .toLowerCase()
     .trim()
     .replace(/[\s/]+/g, '-')
-    .replace(/[^\w-\u4e00-\u9fa5]/g, '')
+    .replace(/[^\w-\u4e00-\u9fa5-]/g, '')
 }
 
 function fileNameToSlug(filePath) {
@@ -25,21 +25,21 @@ function groupIdFromName(name) {
 function parseFrontmatter(raw) {
   let text = String(raw || '')
 
-  // 兼容 BOM
+  // 兼容 UTF-8 BOM
   if (text.charCodeAt(0) === 0xfeff) {
     text = text.slice(1)
   }
 
   // 统一换行符，兼容 Windows CRLF
-  text = text.replace(/\r\n/g, '\n')
+  text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
 
-  // 去掉开头多余空行
+  // 去掉开头多余空白行
   text = text.replace(/^\s*\n/, '')
 
   if (!text.startsWith('---\n')) {
     return {
       data: {},
-      content: text,
+      content: text.trim(),
     }
   }
 
@@ -47,7 +47,7 @@ function parseFrontmatter(raw) {
   if (endIndex === -1) {
     return {
       data: {},
-      content: text,
+      content: text.trim(),
     }
   }
 
@@ -57,11 +57,14 @@ function parseFrontmatter(raw) {
   const data = {}
 
   for (const line of frontmatterText.split('\n')) {
-    const idx = line.indexOf(':')
+    const trimmed = line.trim()
+    if (!trimmed) continue
+
+    const idx = trimmed.indexOf(':')
     if (idx === -1) continue
 
-    const key = line.slice(0, idx).trim()
-    let value = line.slice(idx + 1).trim()
+    const key = trimmed.slice(0, idx).trim()
+    let value = trimmed.slice(idx + 1).trim()
 
     if (
       (value.startsWith('"') && value.endsWith('"')) ||
@@ -71,7 +74,8 @@ function parseFrontmatter(raw) {
     }
 
     if (key === 'groupOrder' || key === 'order') {
-      data[key] = Number(value)
+      const num = Number(value)
+      data[key] = Number.isNaN(num) ? 999 : num
     } else {
       data[key] = value
     }
@@ -89,15 +93,17 @@ function createMarkdownRenderer() {
 
   const defaultHeadingOpen =
     md.renderer.rules.heading_open ||
-    ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options))
+    ((tokens, idx, options, env, self) =>
+      self.renderToken(tokens, idx, options))
 
   md.renderer.rules.heading_open = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
     const next = tokens[idx + 1]
 
     if (next && next.type === 'inline') {
-      const title = next.content
-      const baseId = slugify(title)
+      const title = next.content || ''
+      const baseId = slugify(title) || `heading-${idx}`
+
       const usedMap = env.headingIdMap || new Map()
       env.headingIdMap = usedMap
 
@@ -170,7 +176,15 @@ function buildNavigationFromDocs(docs) {
     })
   }
 
-  return [...groupMap.values()].sort((a, b) => a.groupOrder - b.groupOrder)
+  return [...groupMap.values()]
+    .sort((a, b) => a.groupOrder - b.groupOrder)
+    .map((group) => ({
+      ...group,
+      docs: group.docs.sort((a, b) => {
+        if (a.order !== b.order) return a.order - b.order
+        return a.title.localeCompare(b.title, 'zh-CN')
+      }),
+    }))
 }
 
 export async function fetchDocsNavigation() {
@@ -186,7 +200,11 @@ export async function fetchDocBySlug(slug) {
   const doc = localDocs.find((item) => item.slug === slug)
   if (!doc) return null
 
-  const env = { headings: [], headingIdMap: new Map() }
+  const env = {
+    headings: [],
+    headingIdMap: new Map(),
+  }
+
   const html = md.render(doc.markdown || '', env)
 
   return {
