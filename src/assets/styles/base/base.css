@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+body {
+  line-height: 1.6;
+  background:
+    radial-gradient(circle at top, rgba(120, 200, 80, 0.04), transparent 28%),
+    linear-gradient(180deg, #171c17 0%, #101310 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+button {
+  font: inherit;
+}
+
+.site-shell {
+  overflow: hidden;
+}
+
+.app-main {
+  padding-top: 82px;
+}
+
+/* 通用替代背景层，可按需用于某些区块 */
+.alt-surface {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(120, 200, 80, 0.08), transparent 24%),
+    linear-gradient(180deg, #171c17 0%, #101310 100%);
+}
+
+/* 通用像素面板 */
+.pixel-panel {
+  position: relative;
+  background: linear-gradient(180deg, #1e241e 0%, #171c17 100%);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-strong);
+}
+
+.pixel-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.04),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.22);
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .app-main {
+    padding-top: 74px;
+  }
+}

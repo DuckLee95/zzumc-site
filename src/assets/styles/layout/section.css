@@ -1,0 +1,111 @@
+.section {
+  position: relative;
+  padding: var(--home-section-gap) 0;
+}
+
+.section-dark {
+  background: linear-gradient(180deg, #151915 0%, #101310 100%);
+}
+
+.section-light {
+  background: linear-gradient(180deg, #e0ead8 0%, #d3dec8 100%);
+  color: var(--text-dark);
+}
+
+.section-showcase {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0)),
+    linear-gradient(180deg, #111511 0%, #181d18 100%);
+}
+
+.decorated-section::before,
+.decorated-section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: repeating-linear-gradient(
+    90deg,
+    #394339 0 28px,
+    #2c332c 28px 56px
+  );
+}
+
+.decorated-section::before {
+  top: 0;
+}
+
+.decorated-section::after {
+  bottom: 0;
+}
+
+.section-layered::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.03) 0 1px,
+      transparent 1px 44px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.03) 0 1px,
+      transparent 1px 44px
+    );
+  pointer-events: none;
+}
+
+.section-heading {
+  position: relative;
+  z-index: 1;
+  max-width: var(--home-title-max);
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.section-heading.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-heading h2 {
+  margin: 10px 0 14px;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.08;
+  font-weight: 900;
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: clamp(16px, 1.05vw, 18px);
+  line-height: 1.8;
+}
+
+.section-kicker {
+  margin: 0;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.dark-text p {
+  color: rgba(29, 34, 29, 0.78);
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding: 76px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 34px;
+  }
+}

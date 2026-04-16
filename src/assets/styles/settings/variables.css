@@ -1,0 +1,33 @@
+:root {
+  --bg-main: #111411;
+  --bg-deep: #0c0f0c;
+  --bg-soft: #1a1f1a;
+  --bg-panel: #1c211c;
+  --bg-panel-2: #242b24;
+
+  --line: #3d473b;
+  --line-strong: #596552;
+
+  --text-main: #f5f7f3;
+  --text-soft: #c4cec0;
+  --text-dark: #1d221d;
+
+  --green-main: #78c850;
+  --green-deep: #4f8f33;
+  --green-soft: #a6e27f;
+
+  --gold: #d9c76e;
+  --brown: #7a5b39;
+  --stone: #858a84;
+
+  --shadow-strong: 0 18px 42px rgba(0, 0, 0, 0.38);
+  --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.18);
+
+  --home-max-width: 1640px;
+  --home-max-width-xl: 1740px;
+  --home-section-gap: clamp(76px, 7vw, 112px);
+  --home-card-gap: clamp(20px, 1.6vw, 30px);
+  --home-title-max: 920px;
+  --home-card-min-h: 300px;
+  --home-card-min-h-large: 330px;
+}

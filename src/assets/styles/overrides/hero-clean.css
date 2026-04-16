@@ -1,0 +1,177 @@
+.hero-section-clean .clean-center-block {
+  width: min(1100px, 100%);
+}
+
+.hero-section-clean .hero-title-frame {
+  all: unset;
+}
+
+.hero-badge-clean {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: heroBadgeReveal 0.8s ease-out 0.15s forwards;
+}
+
+.clean-main-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.clean-title-top {
+  display: block;
+  font-size: clamp(30px, 2.3vw, 42px);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(245, 247, 243, 0.94);
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(22px);
+  animation: heroTitleTopReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.22s forwards;
+}
+
+.clean-title-bottom {
+  display: block;
+  font-size: clamp(72px, 8.4vw, 144px);
+  line-height: 0.96;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--green-soft);
+  text-shadow:
+    0 0 14px rgba(166, 226, 127, 0.14),
+    0 0 30px rgba(166, 226, 127, 0.08),
+    0 8px 18px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transform: translateY(36px) scale(0.96);
+  filter: blur(8px);
+  animation:
+    heroTitleBottomReveal 1s cubic-bezier(0.2, 0.9, 0.2, 1) 0.4s forwards,
+    heroTitleFloat 5.8s ease-in-out 1.6s infinite,
+    heroTitleGlow 4.8s ease-in-out 1.6s infinite;
+}
+
+.hero-section-clean .hero-primary-cta-wrap {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroBlockReveal 0.75s ease-out 0.7s forwards;
+}
+
+.hero-section-clean .hero-mini-entry-grid {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroBlockReveal 0.8s ease-out 0.9s forwards;
+}
+
+.hero-section-clean .hero-bottom-note {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroBlockReveal 0.7s ease-out 1.05s forwards;
+}
+
+@keyframes heroBadgeReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    letter-spacing: 2.2px;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 1.8px;
+  }
+}
+
+@keyframes heroTitleTopReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroTitleBottomReveal {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.96);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroBlockReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroTitleFloat {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.003);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroTitleGlow {
+  0% {
+    text-shadow:
+      0 0 14px rgba(166, 226, 127, 0.14),
+      0 0 30px rgba(166, 226, 127, 0.08),
+      0 8px 18px rgba(0, 0, 0, 0.18);
+  }
+  50% {
+    text-shadow:
+      0 0 20px rgba(166, 226, 127, 0.2),
+      0 0 42px rgba(166, 226, 127, 0.12),
+      0 8px 18px rgba(0, 0, 0, 0.18);
+  }
+  100% {
+    text-shadow:
+      0 0 14px rgba(166, 226, 127, 0.14),
+      0 0 30px rgba(166, 226, 127, 0.08),
+      0 8px 18px rgba(0, 0, 0, 0.18);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-badge-clean {
+    font-size: 12px;
+    letter-spacing: 1.4px;
+  }
+
+  .clean-main-title {
+    gap: 8px;
+  }
+
+  .clean-title-bottom {
+    font-size: clamp(56px, 15vw, 86px);
+  }
+}

@@ -1,0 +1,111 @@
+#quickstart {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.quick-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--home-card-gap);
+}
+
+.pixel-card-light,
+.quick-card {
+  position: relative;
+  min-height: var(--home-card-min-h);
+  padding: clamp(24px, 1.6vw, 34px);
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.78);
+  border: 2px solid rgba(29, 34, 29, 0.08);
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+
+.pixel-card-light::before,
+.quick-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.28),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+}
+
+.pixel-card-light:hover,
+.quick-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(79, 143, 51, 0.28);
+  box-shadow: 0 26px 46px rgba(0, 0, 0, 0.18);
+}
+
+.quick-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  height: 34px;
+  padding: 0 10px;
+  margin-bottom: 18px;
+  background: linear-gradient(180deg, #92de68, #68b948);
+  color: #132011;
+  font-weight: 900;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.quick-card h3 {
+  margin: 0 0 12px;
+  font-size: clamp(22px, 1.35vw, 28px);
+  line-height: 1.2;
+}
+
+.quick-card p {
+  margin: 0 0 18px;
+  color: rgba(29, 34, 29, 0.78);
+  font-size: clamp(15px, 1vw, 17px);
+  line-height: 1.82;
+}
+
+.quick-card a {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 40px;
+  font-weight: 900;
+  color: #2d6f22;
+}
+
+@media (min-width: 1600px) {
+  .pixel-card-light,
+  .quick-card {
+    min-height: var(--home-card-min-h-large);
+    padding: 32px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .quick-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .quick-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .pixel-card-light,
+  .quick-card {
+    min-height: auto;
+    padding: 22px;
+  }
+}
