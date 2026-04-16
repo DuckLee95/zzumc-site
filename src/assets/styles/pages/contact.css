@@ -1,4 +1,4 @@
-.upgraded-contact-page {
+.about-page-upgraded {
   min-height: 100vh;
   padding: 34px 0 96px;
   background:
@@ -7,7 +7,8 @@
 }
 
 .contact-page-container {
-  width: min(1380px, 94%);
+  width: min(1440px, 95%);
+  margin: 0 auto;
 }
 
 .contact-topbar {
@@ -28,46 +29,48 @@
   opacity: 0.92;
 }
 
-.contact-hero {
-  padding: 30px 28px;
-  margin-bottom: 24px;
+.about-hero {
+  margin-bottom: 34px;
 }
 
-.contact-hero h1 {
+.about-hero h1 {
   margin: 10px 0 12px;
-  font-size: clamp(38px, 5vw, 56px);
-  line-height: 1.06;
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1.05;
 }
 
-.contact-hero-desc {
+.about-hero-desc {
   margin: 0;
-  max-width: 860px;
+  max-width: 940px;
   color: var(--text-soft);
+  line-height: 1.9;
   font-size: 17px;
 }
 
-.contact-main-layout {
+.about-main-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
-  gap: 24px;
+  gap: 28px;
   align-items: start;
 }
 
-.contact-main-column {
+.about-main-column {
   display: grid;
-  gap: 20px;
+  gap: 26px;
 }
 
-.contact-section {
-  padding: 24px;
+.about-section {
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
-.contact-section-head {
-  margin-bottom: 14px;
+.about-section-head {
+  margin-bottom: 16px;
 }
 
-.contact-section-kicker {
-  margin: 0 0 6px;
+.about-section-kicker {
+  margin: 0 0 8px;
   color: var(--gold);
   font-size: 13px;
   font-weight: 900;
@@ -75,138 +78,247 @@
   text-transform: uppercase;
 }
 
-.contact-section h2 {
-  margin: 0;
-  font-size: 30px;
-  line-height: 1.12;
+.about-section h2 {
+  margin: 0 0 10px;
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1.1;
 }
 
-.contact-section-desc {
+.about-section-subdesc {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+
+.about-rich-text {
+  display: grid;
+  gap: 14px;
+}
+
+.about-rich-text p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.95;
+}
+
+/* 联系方式 */
+.about-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.about-contact-card {
+  padding: 18px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.about-contact-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.about-contact-value {
+  display: inline-block;
+  color: var(--text-main);
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.about-contact-value.link {
+  color: var(--green-soft);
+}
+
+.about-contact-desc {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+
+/* 加入流程 */
+.about-steps-list {
+  display: grid;
+  gap: 14px;
+}
+
+.about-step-card {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.about-step-index {
+  color: var(--green-soft);
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.about-step-content h3 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.about-step-content p {
   margin: 0;
   color: var(--text-soft);
   line-height: 1.85;
 }
 
-.contact-cards-grid {
+/* 成员与特别感谢 */
+.people-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
 }
 
-.contact-card {
-  padding: 18px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.contact-card h3 {
-  margin: 0 0 8px;
-  font-size: 22px;
-}
-
-.contact-card p {
-  margin: 0 0 12px;
-  color: var(--text-soft);
-}
-
-.contact-card-value {
-  color: var(--green-soft);
-  font-weight: 900;
-}
-
-.contact-steps-list {
-  margin: 0;
-  padding-left: 22px;
-  color: var(--text-soft);
-}
-
-.contact-steps-list li + li {
-  margin-top: 10px;
-}
-
-.contact-section-actions {
+.person-card {
   display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.contact-sidebar {
+.person-avatar-wrap {
+  width: 112px;
+  height: 112px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.person-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.person-meta {
+  display: grid;
+  gap: 4px;
+}
+
+.person-name {
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.member-name {
+  color: #ffffff;
+}
+
+.sponsor-name {
+  color: #d9c76e;
+}
+
+.person-role {
+  color: var(--text-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* 右侧边栏 */
+.about-sidebar {
   display: grid;
   gap: 18px;
 }
 
-.contact-side-panel {
-  padding: 20px;
+.about-side-panel {
+  padding: 18px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.contact-side-panel h3 {
+.about-side-panel h3 {
   margin: 0 0 14px;
   font-size: 22px;
 }
 
-.contact-quick-links {
+.about-quick-links {
   display: grid;
   gap: 10px;
 }
 
-.contact-quick-links a,
-.contact-side-tags a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  padding: 0 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.about-quick-links a {
   color: var(--text-main);
   font-weight: 800;
-  transition: transform 0.18s ease, background 0.18s ease;
 }
 
-.contact-quick-links a:hover,
-.contact-side-tags a:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.contact-note-list {
+.about-note-list {
   margin: 0;
   padding-left: 18px;
   color: var(--text-soft);
 }
 
-.contact-note-list li + li {
+.about-note-list li + li {
   margin-top: 10px;
 }
 
-.contact-side-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.about-side-text {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.85;
 }
 
 @media (max-width: 1180px) {
-  .contact-main-layout,
-  .contact-cards-grid {
+  .about-main-layout {
     grid-template-columns: 1fr;
+  }
+
+  .people-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .about-contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .people-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 760px) {
-  .upgraded-contact-page {
+  .about-page-upgraded {
     padding: 22px 0 78px;
   }
 
-  .contact-hero,
-  .contact-section {
-    padding: 22px 18px;
+  .contact-page-container {
+    width: min(92%, 100%);
   }
 
-  .contact-section h2 {
-    font-size: 26px;
+  .about-hero h1 {
+    font-size: 34px;
   }
 
-  .contact-section-actions .pixel-btn {
-    width: 100%;
+  .about-step-card {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .about-step-index {
+    font-size: 24px;
+  }
+
+  .people-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .person-avatar-wrap {
+    width: 96px;
+    height: 96px;
   }
 }

@@ -4,9 +4,6 @@
       <div class="section-heading center server-heading-centered">
         <p class="section-kicker">SERVER STATUS</p>
         <h2>服务器信息</h2>
-        <p>
-          这里预留给多个 MC 服务器的在线状态、版本信息、玩家人数和节点说明，后续可以直接接入接口自动更新。
-        </p>
 
         <RouterLink class="view-all-news centered-view-all-news" to="/server-info">
           查看更多

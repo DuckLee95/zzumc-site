@@ -7,43 +7,28 @@
       </RouterLink>
 
       <nav class="nav-links">
-        <RouterLink to="/">主页面</RouterLink>
+        <RouterLink to="/">主页</RouterLink>
         <RouterLink to="/news">最新消息</RouterLink>
         <RouterLink to="/docs">帮助文档</RouterLink>
         <RouterLink to="/downloads">资源下载</RouterLink>
+        <RouterLink to="/server-info">服务器信息</RouterLink>
 
-        <!-- 先预留服务器信息页面路径 -->
-        <a href="/server-info">服务器信息</a>
-
-        <!-- QQ频道外链，改成你的真实地址 -->
-        <a
-          href="https://pd.qq.com/你的频道链接"
-          target="_blank"
-          rel="noreferrer"
-        >
-          QQ频道
+        <a href="https://pd.qq.com/s/9vp9i3opo" target="_blank" rel="noreferrer" class="external-nav-link">
+          <span>QQ频道</span>
+          <span class="external-badge">↗</span>
         </a>
 
-        <RouterLink to="/contact">联系我们</RouterLink>
+        <RouterLink to="/contact">关于</RouterLink>
       </nav>
 
       <div class="navbar-actions">
-        <a
-          class="pixel-btn pixel-btn-primary nav-login"
-          href="https://你的皮肤站地址"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a class="pixel-btn pixel-btn-primary nav-login" href="https://skin.twinklestars.top/auth/login" target="_blank"
+          rel="noreferrer">
           皮肤站登录
         </a>
 
-        <button
-          class="mobile-menu-btn"
-          type="button"
-          :aria-expanded="mobileOpen ? 'true' : 'false'"
-          aria-label="打开菜单"
-          @click="mobileOpen = !mobileOpen"
-        >
+        <button class="mobile-menu-btn" type="button" :aria-expanded="mobileOpen ? 'true' : 'false'" aria-label="打开菜单"
+          @click="mobileOpen = !mobileOpen">
           <span></span>
           <span></span>
           <span></span>
@@ -58,26 +43,17 @@
           <RouterLink to="/news" @click="closeMenu">最新消息</RouterLink>
           <RouterLink to="/docs" @click="closeMenu">帮助文档</RouterLink>
           <RouterLink to="/downloads" @click="closeMenu">资源下载</RouterLink>
+          <RouterLink to="/server-info" @click="closeMenu">服务器信息</RouterLink>
 
-          <a href="/server-info" @click="closeMenu">服务器信息</a>
-
-          <a
-            href="https://pd.qq.com/你的频道链接"
-            target="_blank"
-            rel="noreferrer"
-            @click="closeMenu"
-          >
-            QQ频道
+          <a href="https://pd.qq.com/s/9vp9i3opo" target="_blank" rel="noreferrer" @click="closeMenu"
+            class="external-nav-link">
+            <span>QQ频道</span>
+            <span class="external-badge">↗</span>
           </a>
 
           <RouterLink to="/contact" @click="closeMenu">联系我们</RouterLink>
 
-          <a
-            href="https://你的皮肤站地址"
-            target="_blank"
-            rel="noreferrer"
-            @click="closeMenu"
-          >
+          <a href="https://skin.twinklestars.top/auth/login" target="_blank" rel="noreferrer" @click="closeMenu">
             皮肤站登录
           </a>
         </div>

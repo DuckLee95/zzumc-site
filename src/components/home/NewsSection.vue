@@ -4,9 +4,6 @@
       <div class="section-heading center">
         <p class="section-kicker">NEWS</p>
         <h2>最新消息</h2>
-        <p>
-          这里展示你指定要在首页露出的重要公告、活动和更新内容。
-        </p>
 
         <RouterLink class="centered-view-all-news" to="/news">
           查看全部新闻

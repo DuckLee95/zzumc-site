@@ -34,12 +34,8 @@
             <strong>资源下载</strong>
           </RouterLink>
 
-          <a
-            class="hero-mini-entry polished-mini-entry entry-skin"
-            href="https://pd.qq.com/你的频道链接"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a class="hero-mini-entry polished-mini-entry entry-skin" href="https://pd.qq.com/s/9vp9i3opo" target="_blank"
+            rel="noreferrer">
             <span class="mini-entry-icon">◫</span>
             <span class="mini-entry-kicker">QQ CHANNEL</span>
             <strong>QQ频道</strong>

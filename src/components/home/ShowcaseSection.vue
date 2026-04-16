@@ -4,9 +4,6 @@
       <div class="section-heading center">
         <p class="section-kicker">SHOWCASE</p>
         <h2>风采展示</h2>
-        <p>
-          用更大的轮播图区展示主城、活动、建筑和社团日常。
-        </p>
       </div>
 
       <div
