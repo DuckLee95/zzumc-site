@@ -22,11 +22,11 @@
         </div>
 
         <div class="hero-mini-entry-grid polished-entry-grid">
-          <a class="hero-mini-entry polished-mini-entry entry-join" href="/server-info">
+          <RouterLink class="hero-mini-entry polished-mini-entry entry-join" to="/server-info">
             <span class="mini-entry-icon">▣</span>
             <span class="mini-entry-kicker">SERVER INFO</span>
             <strong>服务器信息</strong>
-          </a>
+          </RouterLink>
 
           <RouterLink class="hero-mini-entry polished-mini-entry entry-download" to="/downloads">
             <span class="mini-entry-icon">⬒</span>
