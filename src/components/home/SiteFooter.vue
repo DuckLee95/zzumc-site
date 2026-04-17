@@ -34,7 +34,7 @@
           <h4>联系我们</h4>
           <p>
             QQ群：
-            <a href="https://qm.qq.com/q/7ZPSTDWUik" target="_blank" rel="noreferrer">
+            <a href="https://qm.qq.com/q/t0M14y23GU" target="_blank" rel="noreferrer">
               加入QQ群
             </a>
           </p>

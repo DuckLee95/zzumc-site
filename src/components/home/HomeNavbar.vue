@@ -18,7 +18,7 @@
           <span class="external-badge">↗</span>
         </a>
 
-        <RouterLink to="/contact">关于</RouterLink>
+        <RouterLink to="/about">关于</RouterLink>
       </nav>
 
       <div class="navbar-actions">
@@ -51,7 +51,7 @@
             <span class="external-badge">↗</span>
           </a>
 
-          <RouterLink to="/contact" @click="closeMenu">联系我们</RouterLink>
+          <RouterLink to="/about" @click="closeMenu">关于社团</RouterLink>
 
           <a href="https://skin.twinklestars.top/auth/login" target="_blank" rel="noreferrer" @click="closeMenu">
             皮肤站登录

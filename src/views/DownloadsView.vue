@@ -2,211 +2,304 @@
   <div class="downloads-page upgraded-downloads-page page-shell">
     <div class="container downloads-page-container">
       <div class="downloads-topbar page-topbar">
-        <RouterLink class="page-back-link" to="/">
-          ← 返回主页面
-        </RouterLink>
+        <RouterLink class="page-back-link" to="/"> ← 返回首页 </RouterLink>
       </div>
 
-      <div class="downloads-hero pixel-panel page-hero-block">
-        <p class="section-kicker">DOWNLOAD CENTER</p>
-        <h1>资源下载</h1>
-        <p class="downloads-hero-desc page-hero-desc">
-          这里集中提供客户端整合包、资源包、补丁文件和安装说明文档。
-          后面你也可以继续扩展成真正的版本中心和下载仓库。
-        </p>
+      <template v-if="pageData">
+        <div class="downloads-hero pixel-panel page-hero-block">
+          <p class="section-kicker">{{ pageData.hero.kicker }}</p>
+          <h1>{{ pageData.hero.title }}</h1>
+          <p class="downloads-hero-desc page-hero-desc">
+            {{ pageData.hero.description }}
+          </p>
 
-        <div class="downloads-hero-tags">
-          <span class="downloads-hero-tag">整合包</span>
-          <span class="downloads-hero-tag">资源包</span>
-          <span class="downloads-hero-tag">补丁文件</span>
-          <span class="downloads-hero-tag">说明文档</span>
-        </div>
-      </div>
-
-      <div class="downloads-featured pixel-panel">
-        <div class="downloads-featured-label">推荐下载</div>
-
-        <div class="downloads-featured-grid">
-          <div class="downloads-featured-content">
-            <p class="downloads-meta-line">
-              <span class="downloads-meta-chip green">推荐</span>
-              <span class="downloads-meta-date">v1.0</span>
-            </p>
-
-            <h2>客户端整合包</h2>
-            <p class="downloads-featured-desc">
-              适合第一次加入的成员使用。整合包会统一包含推荐模组、
-              基础配置和必要文件，方便快速完成环境搭建。
-            </p>
-
-            <div class="downloads-featured-meta">
-              <div class="downloads-meta-box">
-                <span class="meta-key">适用版本</span>
-                <strong>1.20.1 Forge</strong>
-              </div>
-              <div class="downloads-meta-box">
-                <span class="meta-key">文件大小</span>
-                <strong>待填写</strong>
-              </div>
-              <div class="downloads-meta-box">
-                <span class="meta-key">更新时间</span>
-                <strong>2026-04-16</strong>
-              </div>
-            </div>
-
-            <div class="downloads-featured-actions">
-              <a class="pixel-btn pixel-btn-primary" href="#">立即下载</a>
-              <RouterLink class="pixel-btn pixel-btn-dark" to="/docs/install-client">
-                查看安装教程
-              </RouterLink>
-            </div>
-          </div>
-
-          <div class="downloads-featured-side">
-            <div class="downloads-highlight-card">
-              <p class="downloads-highlight-kicker">安装提示</p>
-              <h3>先看文档再下载</h3>
-              <p>第一次安装建议先阅读帮助文档，避免版本和 Java 环境不匹配。</p>
-            </div>
-
-            <div class="downloads-highlight-card">
-              <p class="downloads-highlight-kicker">版本说明</p>
-              <h3>统一使用推荐版本</h3>
-              <p>下载前请确认你使用的是对应版本客户端与资源文件。</p>
-            </div>
+          <div class="downloads-hero-tags">
+            <span v-for="tag in pageData.hero.tags" :key="tag" class="downloads-hero-tag">
+              {{ tag }}
+            </span>
           </div>
         </div>
-      </div>
 
-      <div class="downloads-main-layout">
-        <div class="downloads-list-column">
-          <div class="downloads-list-head">
-            <h2>资源列表</h2>
-            <p>下面这些卡片后面都可以接成真实直链。</p>
-          </div>
+        <section v-if="featuredItem" class="downloads-featured pixel-panel">
+          <div class="downloads-featured-label">{{ pageData.featuredLabel }}</div>
 
-          <div class="downloads-grid">
-            <article
-              v-for="item in downloadItems"
-              :key="item.id"
-              class="downloads-item-card pixel-panel"
-            >
-              <div class="downloads-item-top">
-                <div class="downloads-item-meta">
-                  <span class="downloads-meta-chip" :class="item.tagClass">
-                    {{ item.tag }}
-                  </span>
-                  <span class="downloads-meta-date">{{ item.version }}</span>
+          <div class="downloads-featured-grid">
+            <div class="downloads-featured-content">
+              <p class="downloads-meta-line">
+                <span class="downloads-meta-chip green">推荐</span>
+                <span class="downloads-meta-chip" :class="featuredItem.categoryClass">
+                  {{ featuredItem.categoryLabel }}
+                </span>
+                <span class="downloads-meta-date">{{ featuredItem.version }}</span>
+              </p>
+
+              <h2>{{ featuredItem.title }}</h2>
+              <p class="downloads-featured-desc">{{ featuredItem.summary }}</p>
+
+              <div class="downloads-featured-meta">
+                <div class="downloads-meta-box">
+                  <span class="meta-key">适用版本</span>
+                  <strong>{{ featuredItem.target }}</strong>
+                </div>
+                <div class="downloads-meta-box">
+                  <span class="meta-key">文件大小</span>
+                  <strong>{{ featuredItem.size }}</strong>
+                </div>
+                <div class="downloads-meta-box">
+                  <span class="meta-key">更新时间</span>
+                  <strong>{{ featuredItem.updatedAt }}</strong>
                 </div>
               </div>
 
-              <h3>{{ item.title }}</h3>
-              <p class="downloads-item-desc">{{ item.desc }}</p>
-
-              <div class="downloads-item-extra">
-                <span>适用：{{ item.target }}</span>
-                <span>大小：{{ item.size }}</span>
-              </div>
-
-              <div class="downloads-item-footer">
-                <a
-                  class="downloads-action-button"
-                  :href="item.link"
-                  target="_blank"
-                  rel="noreferrer"
+              <div class="downloads-featured-actions">
+                <RouterLink
+                  v-if="featuredItem.primaryAction.kind === 'route'"
+                  class="pixel-btn pixel-btn-primary"
+                  :to="featuredItem.primaryAction.target"
                 >
-                  {{ item.actionText }}
+                  {{ featuredItem.primaryAction.text }}
+                </RouterLink>
+
+                <a
+                  v-else-if="featuredItem.primaryAction.kind === 'link'"
+                  class="pixel-btn pixel-btn-primary"
+                  :href="featuredItem.primaryAction.target"
+                  :target="featuredItem.primaryAction.newTab ? '_blank' : undefined"
+                  :rel="featuredItem.primaryAction.newTab ? 'noreferrer' : undefined"
+                >
+                  {{ featuredItem.primaryAction.text }}
+                </a>
+
+                <span v-else class="pixel-btn pixel-btn-primary is-disabled">
+                  {{ featuredItem.primaryAction.pendingText }}
+                </span>
+
+                <RouterLink
+                  v-if="featuredItem.secondaryAction?.kind === 'route'"
+                  class="pixel-btn pixel-btn-dark"
+                  :to="featuredItem.secondaryAction.target"
+                >
+                  {{ featuredItem.secondaryAction.text }}
+                </RouterLink>
+
+                <a
+                  v-else-if="featuredItem.secondaryAction?.kind === 'link'"
+                  class="pixel-btn pixel-btn-dark"
+                  :href="featuredItem.secondaryAction.target"
+                  :target="featuredItem.secondaryAction.newTab ? '_blank' : undefined"
+                  :rel="featuredItem.secondaryAction.newTab ? 'noreferrer' : undefined"
+                >
+                  {{ featuredItem.secondaryAction.text }}
                 </a>
               </div>
-            </article>
+            </div>
+
+            <div v-if="pageData.featuredHighlights.length" class="downloads-featured-side">
+              <div
+                v-for="highlight in pageData.featuredHighlights"
+                :key="highlight.id"
+                class="downloads-highlight-card"
+              >
+                <p class="downloads-highlight-kicker">{{ highlight.kicker }}</p>
+                <h3>{{ highlight.title }}</h3>
+                <p>{{ highlight.description }}</p>
+              </div>
+            </div>
           </div>
+        </section>
+
+        <div class="downloads-main-layout">
+          <div class="downloads-list-column">
+            <div class="downloads-list-head">
+              <div>
+                <h2>资源列表</h2>
+                <p>{{ pageData.listDescription }}</p>
+              </div>
+              <p class="downloads-list-summary">{{ listSummary }}</p>
+            </div>
+
+            <div class="downloads-list-toolbar">
+              <label class="downloads-search-wrap" for="downloads-search">
+                <span class="downloads-search-label">资源搜索</span>
+                <input
+                  id="downloads-search"
+                  v-model="keyword"
+                  class="downloads-search-input"
+                  type="text"
+                  :placeholder="pageData.searchPlaceholder"
+                />
+              </label>
+
+              <div class="downloads-filter-block">
+                <p class="downloads-filter-title">下载分类</p>
+                <div class="downloads-filter-list">
+                  <button
+                    v-for="category in categoryOptions"
+                    :key="category.id"
+                    type="button"
+                    class="downloads-filter-button"
+                    :class="{ active: selectedCategory === category.id }"
+                    @click="selectCategory(category.id)"
+                  >
+                    <span>{{ category.label }}</span>
+                    <span class="downloads-filter-count">{{ category.count }}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div v-if="filteredItems.length" class="downloads-grid">
+              <article
+                v-for="item in filteredItems"
+                :key="item.id"
+                class="downloads-item-card pixel-panel"
+              >
+                <div class="downloads-item-top">
+                  <div class="downloads-item-meta">
+                    <span class="downloads-meta-chip" :class="item.categoryClass">
+                      {{ item.categoryLabel }}
+                    </span>
+                    <span class="downloads-meta-date">{{ item.version }}</span>
+                  </div>
+
+                  <span v-if="item.featured" class="downloads-item-flag"> 推荐 </span>
+                </div>
+
+                <h3>{{ item.title }}</h3>
+                <p class="downloads-item-desc">{{ item.summary }}</p>
+
+                <div class="downloads-item-details">
+                  <div class="downloads-item-detail">
+                    <span>适用版本</span>
+                    <strong>{{ item.target }}</strong>
+                  </div>
+                  <div class="downloads-item-detail">
+                    <span>文件大小</span>
+                    <strong>{{ item.size }}</strong>
+                  </div>
+                  <div class="downloads-item-detail">
+                    <span>更新时间</span>
+                    <strong>{{ item.updatedAt }}</strong>
+                  </div>
+                </div>
+
+                <div class="downloads-item-footer">
+                  <RouterLink
+                    v-if="item.primaryAction.kind === 'route'"
+                    class="downloads-action-button"
+                    :to="item.primaryAction.target"
+                  >
+                    {{ item.primaryAction.text }}
+                  </RouterLink>
+
+                  <a
+                    v-else-if="item.primaryAction.kind === 'link'"
+                    class="downloads-action-button"
+                    :href="item.primaryAction.target"
+                    :target="item.primaryAction.newTab ? '_blank' : undefined"
+                    :rel="item.primaryAction.newTab ? 'noreferrer' : undefined"
+                  >
+                    {{ item.primaryAction.text }}
+                  </a>
+
+                  <span v-else class="downloads-action-button is-disabled">
+                    {{ item.primaryAction.pendingText }}
+                  </span>
+
+                  <RouterLink
+                    v-if="item.secondaryAction?.kind === 'route'"
+                    class="downloads-secondary-link"
+                    :to="item.secondaryAction.target"
+                  >
+                    {{ item.secondaryAction.text }}
+                  </RouterLink>
+
+                  <a
+                    v-else-if="item.secondaryAction?.kind === 'link'"
+                    class="downloads-secondary-link"
+                    :href="item.secondaryAction.target"
+                    :target="item.secondaryAction.newTab ? '_blank' : undefined"
+                    :rel="item.secondaryAction.newTab ? 'noreferrer' : undefined"
+                  >
+                    {{ item.secondaryAction.text }}
+                  </a>
+                </div>
+              </article>
+            </div>
+
+            <div v-else class="downloads-empty-state pixel-panel">
+              <h3>没有找到匹配资源</h3>
+              <p>换个关键词，或者切换下载分类后再试。</p>
+              <button type="button" class="downloads-reset-button" @click="resetFilters">
+                清空筛选
+              </button>
+            </div>
+          </div>
+
+          <aside class="downloads-sidebar page-sidebar-stack">
+            <div class="downloads-side-panel page-side-panel pixel-panel">
+              <h3>下载须知</h3>
+              <ul class="downloads-note-list page-note-list">
+                <li v-for="note in pageData.notes" :key="note">
+                  {{ note }}
+                </li>
+              </ul>
+            </div>
+          </aside>
         </div>
-
-        <aside class="downloads-sidebar page-sidebar-stack">
-          <div class="downloads-side-panel page-side-panel pixel-panel">
-            <h3>下载分类</h3>
-            <div class="downloads-side-tags page-tag-list">
-              <a href="#">全部</a>
-              <a href="#">整合包</a>
-              <a href="#">资源包</a>
-              <a href="#">补丁</a>
-              <a href="#">文档</a>
-            </div>
-          </div>
-
-          <div class="downloads-side-panel page-side-panel pixel-panel">
-            <h3>下载须知</h3>
-            <ul class="downloads-note-list page-note-list">
-              <li>下载前先确认游戏版本。</li>
-              <li>整合包建议配合帮助文档使用。</li>
-              <li>补丁文件请按说明覆盖或导入。</li>
-              <li>如有报错，优先查看 FAQ。</li>
-            </ul>
-          </div>
-
-          <div class="downloads-side-panel page-side-panel pixel-panel">
-            <h3>快速入口</h3>
-            <div class="downloads-quick-links page-link-stack">
-              <RouterLink to="/docs">帮助文档</RouterLink>
-              <RouterLink to="/news">最新消息</RouterLink>
-              <RouterLink to="/contact">联系我们</RouterLink>
-            </div>
-          </div>
-        </aside>
-      </div>
+      </template>
     </div>
   </div>
 </template>
 
 <script setup>
-const downloadItems = [
-  {
-    id: 1,
-    tag: '整合包',
-    tagClass: 'green',
-    version: 'v1.0',
-    title: '客户端整合包',
-    desc: '适合第一次加入的成员，包含推荐模组、基础配置和必要文件。',
-    target: '1.20.1 Forge',
-    size: '待填写',
-    link: '#',
-    actionText: '立即下载',
-  },
-  {
-    id: 2,
-    tag: '资源包',
-    tagClass: 'stone',
-    version: 'v1.0',
-    title: '服务器资源包',
-    desc: '包含贴图、部分 UI 资源与社团服务器专用视觉内容。',
-    target: '1.20.1',
-    size: '待填写',
-    link: '#',
-    actionText: '下载资源包',
-  },
-  {
-    id: 3,
-    tag: '补丁',
-    tagClass: 'gold',
-    version: 'Patch 01',
-    title: '兼容性补丁',
-    desc: '用于修复部分环境下的模组冲突或资源加载问题。',
-    target: '指定版本',
-    size: '待填写',
-    link: '#',
-    actionText: '下载补丁',
-  },
-  {
-    id: 4,
-    tag: '文档',
-    tagClass: 'green',
-    version: 'PDF',
-    title: '安装说明文档',
-    desc: '适合第一次安装整合包的新成员，内含安装流程与注意事项。',
-    target: '通用',
-    size: '待填写',
-    link: '#',
-    actionText: '查看文档',
-  },
-]
+import { computed, onMounted, ref } from 'vue'
+import { ALL_DOWNLOAD_CATEGORY, fetchDownloadsPageData } from '../lib/downloadsSource'
+
+const pageData = ref(null)
+const keyword = ref('')
+const selectedCategory = ref(ALL_DOWNLOAD_CATEGORY)
+
+const categoryOptions = computed(() => pageData.value?.categoryOptions || [])
+const featuredItem = computed(() => pageData.value?.featuredItem || null)
+const items = computed(() => pageData.value?.items || [])
+
+const filteredItems = computed(() => {
+  const query = keyword.value.trim().toLowerCase()
+
+  return items.value.filter((item) => {
+    const matchesCategory =
+      selectedCategory.value === ALL_DOWNLOAD_CATEGORY || item.category === selectedCategory.value
+    const matchesQuery = !query || item.searchText.includes(query)
+
+    return matchesCategory && matchesQuery
+  })
+})
+
+const listSummary = computed(() => {
+  const total = items.value.length
+
+  if (!total) {
+    return '暂无资源'
+  }
+
+  if (!keyword.value.trim() && selectedCategory.value === ALL_DOWNLOAD_CATEGORY) {
+    return `共 ${total} 项资源`
+  }
+
+  return `当前显示 ${filteredItems.value.length} / ${total} 项资源`
+})
+
+function selectCategory(categoryId) {
+  selectedCategory.value = categoryId
+}
+
+function resetFilters() {
+  keyword.value = ''
+  selectedCategory.value = ALL_DOWNLOAD_CATEGORY
+}
+
+onMounted(async () => {
+  pageData.value = await fetchDownloadsPageData()
+})
 </script>

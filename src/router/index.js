@@ -57,8 +57,9 @@ const router = createRouter({
       component: ServerInfoView,
     },
     {
-      path: '/contact',
-      name: 'contact',
+      path: '/about',
+      alias: '/contact',
+      name: 'about',
       component: ContactView,
     },
   ],

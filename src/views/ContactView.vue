@@ -7,13 +7,32 @@
         </RouterLink>
       </div>
 
+      <section class="about-cover-panel mc-pixel-panel">
+        <div class="about-cover-visual">
+          <img :src="aboutHeroImage" alt="郑爱玩MC 社团大合照展示位" />
+          <div class="about-cover-overlay"></div>
+
+          <div class="about-cover-copy">
+            <p class="about-cover-kicker">COMMUNITY ALBUM</p>
+            <h1>关于郑爱玩MC</h1>
+          </div>
+        </div>
+      </section>
+
       <section class="about-hero page-hero">
         <p class="section-kicker">ABOUT US</p>
-        <h1>关于郑爱玩MC</h1>
+        <h2 class="about-hero-title">一个围绕联机、生存、建筑与活动展开的高校 MC 社团</h2>
         <p class="about-hero-desc page-hero-desc">
-          郑爱玩MC 是一个围绕 Minecraft 联机、生存、建筑、活动与社区交流展开的校园社团门户。
-          我们希望把新闻公告、帮助文档、资源下载、皮肤站与社区联系方式统一整合，方便新成员加入，也方便老成员持续参与。
+          郑爱玩MC 是一个以郑州大学学生为核心，围绕 Minecraft 联机、生存、建筑、活动与社区交流展开的校园社团。
         </p>
+
+        <div class="about-hero-highlights">
+          <div v-for="item in aboutHighlights" :key="item.label" class="about-highlight-card">
+            <span class="about-highlight-label">{{ item.label }}</span>
+            <strong>{{ item.value }}</strong>
+            <p>{{ item.desc }}</p>
+          </div>
+        </div>
       </section>
 
       <div class="about-main-layout">
@@ -92,7 +111,7 @@
             <div class="people-grid">
               <div v-for="member in members" :key="member.id" class="person-card member-card">
                 <div class="person-avatar-wrap">
-                  <img class="person-avatar" :src="member.avatar" :alt="member.id" />
+                  <img class="person-avatar" :src="member.avatar" :alt="member.id" @error="handleAvatarError" />
                 </div>
 
                 <div class="person-meta">
@@ -115,7 +134,7 @@
             <div class="people-grid">
               <div v-for="sponsor in sponsors" :key="sponsor.id" class="person-card sponsor-card">
                 <div class="person-avatar-wrap">
-                  <img class="person-avatar" :src="sponsor.avatar" :alt="sponsor.id" />
+                  <img class="person-avatar" :src="sponsor.avatar" :alt="sponsor.id" @error="handleAvatarError" />
                 </div>
 
                 <div class="person-meta">
@@ -160,11 +179,39 @@
 </template>
 
 <script setup>
+const aboutHeroImage = '/images/showcase-1.jpg'
+const fallbackAvatar = '/images/authors/default-author.png'
+
+const aboutHighlights = [
+  {
+    label: '社团氛围',
+    value: '轻松联机 + 持续建设',
+    desc: '从第一次进服到后续长期游玩，都希望让成员有稳定的归属感和参与感。',
+  },
+  {
+    label: '内容整合',
+    value: '新闻 / 文档 / 下载 / 联系',
+    desc: '把加入社团最常用的信息集中在站内，减少到处翻找入口的成本。',
+  },
+  {
+    label: '记录方式',
+    value: '活动截图 + 社团合照',
+    desc: '除了文字介绍，也会逐步把活动照片、服务器截图和集体合影放进页面里。',
+  },
+]
+
+function handleAvatarError(event) {
+  if (event.target.dataset.fallbackApplied) return
+
+  event.target.dataset.fallbackApplied = 'true'
+  event.target.src = fallbackAvatar
+}
+
 const contactItems = [
   {
     label: 'QQ群',
     value: '加入QQ群',
-    link: 'https://qm.qq.com/7ZPSTDWUik',
+    link: 'https://qm.qq.com/q/t0M14y23GU',
     desc: '用于日常通知、活动交流和成员沟通。',
   },
   {
@@ -197,12 +244,16 @@ const joinSteps = [
     desc: '优先加入QQ群或 QQ 频道，方便及时获取版本更新、活动公告和管理说明。',
   },
   {
+    title: '注册皮肤站账号',
+    desc: '游戏服务器进入需要使用皮肤站验证登录，皮肤站也方便于玩家上传自己喜爱的皮肤。',
+  },
+  {
     title: '下载客户端与资源',
     desc: '根据帮助文档与资源下载页说明，下载对应整合包、客户端或其他必要资源。',
   },
   {
-    title: '完成安装并阅读规则',
-    desc: '安装客户端后，阅读基础规则、服务器说明和常见问题，避免第一次进入时出错。',
+    title: '配置启动器登录皮肤站并阅读规则',
+    desc: '安装客户端后，根据教程配置启动器登录皮肤站，阅读基础规则、服务器说明和常见问题，避免第一次进入时出错。',
   },
   {
     title: '正式加入并参与活动',
