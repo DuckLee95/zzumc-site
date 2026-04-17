@@ -8,93 +8,27 @@
   gap: 18px;
 }
 
-/* 首页新闻卡片：无边框、无阴影、与背景一致 */
 .home-news-card {
-  position: relative;
-  display: block;
-  overflow: hidden;
   min-height: 320px;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-}
-
-.home-news-card:first-child {
-  grid-column: span 2;
-  min-height: 520px;
-}
-
-.home-news-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transform: scale(1.01);
-  transition: transform 0.35s ease;
-}
-
-.home-news-card:hover .home-news-image {
-  transform: scale(1.05);
-}
-
-.home-news-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  padding: 22px;
-  background:
+  --media-card-padding: 22px;
+  --media-card-padding-mobile: 16px;
+  --media-card-overlay:
     linear-gradient(
       180deg,
       rgba(10, 12, 10, 0.06) 0%,
       rgba(10, 12, 10, 0.22) 30%,
       rgba(10, 12, 10, 0.78) 100%
     );
+  --media-card-title-size: clamp(22px, 1.6vw, 34px);
+  --media-card-title-size-mobile: 24px;
+  --media-card-summary-size: 15px;
+  --media-card-summary-size-mobile: 14px;
+  --media-card-summary-max: 160px;
 }
 
-.home-news-meta {
-  margin-bottom: 10px;
-}
-
-.home-news-category {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 0 10px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text-main);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.3px;
-}
-
-.home-news-overlay h3 {
-  margin: 0;
-  color: #fff;
-  font-size: clamp(22px, 1.6vw, 34px);
-  line-height: 1.12;
-  max-width: 92%;
-}
-
-.home-news-summary {
-  margin: 12px 0 0;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  color: rgba(245, 247, 243, 0.9);
-  line-height: 1.75;
-  transition:
-    max-height 0.28s ease,
-    opacity 0.28s ease,
-    margin-top 0.28s ease;
-}
-
-.home-news-card:hover .home-news-summary {
-  max-height: 160px;
-  opacity: 1;
-  margin-top: 12px;
+.home-news-card:first-child {
+  grid-column: span 2;
+  min-height: 520px;
 }
 
 @media (max-width: 1200px) {
@@ -116,18 +50,5 @@
   .home-news-card:first-child {
     grid-column: auto;
     min-height: 320px;
-  }
-
-  .home-news-overlay {
-    padding: 16px;
-  }
-
-  .home-news-overlay h3 {
-    font-size: 24px;
-    max-width: 100%;
-  }
-
-  .home-news-summary {
-    font-size: 14px;
   }
 }

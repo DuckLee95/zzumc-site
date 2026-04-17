@@ -1,16 +1,16 @@
 <template>
-  <div class="server-info-page upgraded-server-info-page">
+  <div class="server-info-page upgraded-server-info-page page-shell">
     <div class="container server-info-page-container">
-      <div class="server-info-topbar">
+      <div class="server-info-topbar page-topbar">
         <RouterLink class="server-info-back-link mc-pixel-inline-link" to="/">
           ← 返回主页面
         </RouterLink>
       </div>
 
-      <div class="server-info-hero pixel-panel">
+      <div class="server-info-hero pixel-panel page-hero-block">
         <p class="section-kicker">SERVER CENTER</p>
         <h1>服务器信息</h1>
-        <p class="server-info-hero-desc">
+        <p class="server-info-hero-desc page-hero-desc">
           这里是完整的服务器状态页。你可以在这里查看各节点当前状态、版本、在线人数，并展开查看当前在线玩家。
         </p>
       </div>

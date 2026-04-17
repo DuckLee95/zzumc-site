@@ -1,5 +1,5 @@
 <template>
-  <div class="news-detail-page article-news-page" v-if="news">
+  <div class="news-detail-page article-news-page page-shell page-shell--article" v-if="news">
     <div class="news-detail-cover-hero" v-if="news.cover">
       <img
         :src="news.cover"
@@ -13,8 +13,8 @@
     </div>
 
     <div class="container news-detail-container">
-      <div class="news-detail-topbar">
-        <RouterLink class="news-back-link" to="/news">
+      <div class="news-detail-topbar page-topbar">
+        <RouterLink class="page-back-link" to="/news">
           ← 返回新闻列表
         </RouterLink>
       </div>
@@ -84,10 +84,10 @@
     </div>
   </div>
 
-  <div class="news-detail-page article-news-page" v-else>
+  <div class="news-detail-page article-news-page page-shell page-shell--article" v-else>
     <div class="container news-detail-container">
-      <div class="news-detail-topbar">
-        <RouterLink class="news-back-link" to="/news">
+      <div class="news-detail-topbar page-topbar">
+        <RouterLink class="page-back-link" to="/news">
           ← 返回新闻列表
         </RouterLink>
       </div>

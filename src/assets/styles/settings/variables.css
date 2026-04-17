@@ -30,4 +30,36 @@
   --home-title-max: 920px;
   --home-card-min-h: 300px;
   --home-card-min-h-large: 330px;
+
+  --page-surface:
+    radial-gradient(circle at top, rgba(120, 200, 80, 0.04), transparent 24%),
+    linear-gradient(180deg, #151915 0%, #101310 100%);
+  --page-shell-padding-top: 34px;
+  --page-shell-padding-bottom: 96px;
+  --page-shell-padding-top-mobile: 22px;
+  --page-shell-padding-bottom-mobile: 78px;
+  --page-hero-padding: 30px 28px;
+  --page-hero-padding-mobile: 22px 18px;
+  --page-hero-max-width: 900px;
+  --page-hero-title-size: clamp(38px, 5vw, 56px);
+  --page-hero-body-size: 17px;
+  --page-sidebar-width: 320px;
+  --page-sidebar-gap: 18px;
+
+  --pixel-border-color: #000000;
+  --pixel-border: 2px solid var(--pixel-border-color);
+  --pixel-panel-surface:
+    linear-gradient(180deg, rgba(82, 86, 82, 0.22) 0%, rgba(40, 43, 40, 0.32) 100%),
+    rgba(255, 255, 255, 0.03);
+  --pixel-panel-surface-hover:
+    linear-gradient(180deg, rgba(93, 120, 78, 0.24) 0%, rgba(42, 48, 40, 0.34) 100%),
+    rgba(166, 226, 127, 0.05);
+  --pixel-panel-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.08),
+    inset -2px -4px 0 rgba(0, 0, 0, 0.28),
+    0 4px 0 var(--pixel-border-color);
+  --pixel-panel-shadow-hover:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.08),
+    inset -2px -3px 0 rgba(0, 0, 0, 0.24),
+    0 2px 0 var(--pixel-border-color);
 }

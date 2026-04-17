@@ -1,16 +1,16 @@
 <template>
-  <div class="about-page about-page-upgraded">
+  <div class="about-page about-page-upgraded page-shell">
     <div class="container contact-page-container">
-      <div class="contact-topbar">
-        <RouterLink class="contact-back-link" to="/">
+      <div class="contact-topbar page-topbar">
+        <RouterLink class="page-back-link" to="/">
           ← 返回主页面
         </RouterLink>
       </div>
 
-      <section class="about-hero">
+      <section class="about-hero page-hero">
         <p class="section-kicker">ABOUT US</p>
         <h1>关于郑爱玩MC</h1>
-        <p class="about-hero-desc">
+        <p class="about-hero-desc page-hero-desc">
           郑爱玩MC 是一个围绕 Minecraft 联机、生存、建筑、活动与社区交流展开的校园社团门户。
           我们希望把新闻公告、帮助文档、资源下载、皮肤站与社区联系方式统一整合，方便新成员加入，也方便老成员持续参与。
         </p>
@@ -127,7 +127,7 @@
           </section>
         </main>
 
-        <aside class="about-sidebar">
+        <aside class="about-sidebar page-sidebar-stack">
           <div class="about-side-panel">
             <h3>快速入口</h3>
             <div class="about-quick-links">
@@ -140,7 +140,7 @@
 
           <div class="about-side-panel">
             <h3>加入建议</h3>
-            <ul class="about-note-list">
+            <ul class="about-note-list page-note-list">
               <li>第一次加入前，建议先阅读帮助文档。</li>
               <li>客户端下载前先确认版本与安装方式。</li>
               <li>活动时间、更新和公告请以新闻页与 QQ 频道为准。</li>

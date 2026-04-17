@@ -1,55 +1,11 @@
-.about-page-upgraded {
-  min-height: 100vh;
-  padding: 34px 0 96px;
-  background:
-    radial-gradient(circle at top, rgba(120, 200, 80, 0.04), transparent 24%),
-    linear-gradient(180deg, #151915 0%, #101310 100%);
-}
-
-.contact-page-container {
-  width: min(1440px, 95%);
-  margin: 0 auto;
-}
-
-.contact-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 20px;
-}
-
-.contact-back-link {
-  color: var(--green-soft);
-  font-weight: 900;
-  transition: transform 0.18s ease, opacity 0.18s ease;
-}
-
-.contact-back-link:hover {
-  transform: translateX(-2px);
-  opacity: 0.92;
-}
-
-.about-hero {
-  margin-bottom: 34px;
-}
-
 .about-hero h1 {
-  margin: 10px 0 12px;
   font-size: clamp(40px, 5vw, 60px);
   line-height: 1.05;
 }
 
-.about-hero-desc {
-  margin: 0;
-  max-width: 940px;
-  color: var(--text-soft);
-  line-height: 1.9;
-  font-size: 17px;
-}
-
 .about-main-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-columns: minmax(0, 1fr) var(--page-sidebar-width);
   gap: 28px;
   align-items: start;
 }
@@ -101,7 +57,6 @@
   line-height: 1.95;
 }
 
-/* 联系方式 */
 .about-contact-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -125,10 +80,10 @@
 
 .about-contact-value {
   display: inline-block;
+  margin-bottom: 8px;
   color: var(--text-main);
   font-size: 20px;
   font-weight: 900;
-  margin-bottom: 8px;
 }
 
 .about-contact-value.link {
@@ -141,7 +96,6 @@
   line-height: 1.8;
 }
 
-/* 加入流程 */
 .about-steps-list {
   display: grid;
   gap: 14px;
@@ -174,7 +128,6 @@
   line-height: 1.85;
 }
 
-/* 成员与特别感谢 */
 .people-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -228,12 +181,6 @@
   line-height: 1.5;
 }
 
-/* 右侧边栏 */
-.about-sidebar {
-  display: grid;
-  gap: 18px;
-}
-
 .about-side-panel {
   padding: 18px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -252,16 +199,6 @@
 .about-quick-links a {
   color: var(--text-main);
   font-weight: 800;
-}
-
-.about-note-list {
-  margin: 0;
-  padding-left: 18px;
-  color: var(--text-soft);
-}
-
-.about-note-list li + li {
-  margin-top: 10px;
 }
 
 .about-side-text {
@@ -291,14 +228,6 @@
 }
 
 @media (max-width: 760px) {
-  .about-page-upgraded {
-    padding: 22px 0 78px;
-  }
-
-  .contact-page-container {
-    width: min(92%, 100%);
-  }
-
   .about-hero h1 {
     font-size: 34px;
   }

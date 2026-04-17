@@ -4,9 +4,12 @@
 
 @import "./styles/layout/container.css";
 @import "./styles/layout/section.css";
+@import "./styles/layout/page-shell.css";
 
+@import "./styles/components/pixel.css";
 @import "./styles/components/announcement.css";
 @import "./styles/components/buttons.css";
+@import "./styles/components/media-card.css";
 @import "./styles/components/navbar.css";
 @import "./styles/components/hero.css";
 @import "./styles/components/server-status.css";

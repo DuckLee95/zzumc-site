@@ -15,27 +15,27 @@
           v-for="item in homeNews"
           :key="item.slug"
           :to="`/news/${item.slug}`"
-          class="home-news-card"
+          class="home-news-card media-card"
         >
           <img
             v-if="item.cover"
             :src="item.cover"
             :alt="item.title"
-            class="home-news-image"
+            class="media-card__image"
             :style="{
               objectFit: item.imageFit || 'cover',
               objectPosition: item.imagePosition || 'center center'
             }"
           />
 
-          <div class="home-news-overlay">
-            <div class="home-news-meta">
-              <span class="home-news-category">{{ item.category }}</span>
+          <div class="media-card__overlay">
+            <div class="media-card__meta">
+              <span class="media-card__badge">{{ item.category }}</span>
             </div>
 
-            <h3>{{ item.title }}</h3>
+            <h3 class="media-card__title">{{ item.title }}</h3>
 
-            <p class="home-news-summary">
+            <p class="media-card__summary">
               {{ item.summary }}
             </p>
           </div>

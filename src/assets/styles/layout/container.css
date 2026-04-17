@@ -1,47 +1,50 @@
-.container {
-  width: min(var(--home-max-width), 96%);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.home-wide-container {
-  width: min(var(--home-max-width), 96%);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.container-wide {
-  width: min(var(--home-max-width), 96%);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.navbar-container-wide {
-  width: min(1680px, 97%);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* 各内页统一内容宽度 */
+.container,
+.home-wide-container,
+.container-wide,
+.navbar-container-wide,
 .docs-page-container,
 .news-page-container,
 .downloads-page-container,
-.server-info-page-container {
-  width: min(1440px, 95%);
+.server-info-page-container,
+.contact-page-container,
+.news-detail-container {
+  width: min(var(--container-max, var(--home-max-width)), var(--container-fluid, 96%));
   margin-left: auto;
   margin-right: auto;
 }
 
+.container,
+.home-wide-container,
+.container-wide {
+  --container-max: var(--home-max-width);
+  --container-fluid: 96%;
+}
+
+.navbar-container-wide {
+  --container-max: 1680px;
+  --container-fluid: 97%;
+}
+
+.docs-page-container {
+  --container-max: 1440px;
+  --container-fluid: 95%;
+}
+
+.news-page-container {
+  --container-max: 1480px;
+  --container-fluid: 95%;
+}
+
+.downloads-page-container,
+.server-info-page-container,
 .contact-page-container {
-  width: min(1380px, 94%);
-  margin-left: auto;
-  margin-right: auto;
+  --container-max: 1440px;
+  --container-fluid: 95%;
 }
 
 .news-detail-container {
-  width: min(1120px, 92%);
-  margin-left: auto;
-  margin-right: auto;
+  --container-max: 1320px;
+  --container-fluid: 94%;
 }
 
 @media (min-width: 1700px) {

@@ -1,0 +1,117 @@
+.media-card {
+  --media-card-padding: 18px;
+  --media-card-padding-mobile: 16px;
+  --media-card-overlay:
+    linear-gradient(
+      180deg,
+      rgba(10, 12, 10, 0.05) 0%,
+      rgba(10, 12, 10, 0.18) 34%,
+      rgba(10, 12, 10, 0.84) 100%
+    );
+  --media-card-title-size: clamp(20px, 1.4vw, 30px);
+  --media-card-title-size-mobile: 22px;
+  --media-card-summary-size: 14px;
+  --media-card-summary-size-mobile: 13px;
+  --media-card-summary-max: 120px;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  min-height: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: inherit;
+}
+
+.media-card__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 0.35s ease;
+}
+
+.media-card:hover .media-card__image {
+  transform: scale(1.05);
+}
+
+.media-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--media-card-padding);
+  background: var(--media-card-overlay);
+}
+
+.media-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.media-card__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+
+.media-card__date {
+  color: rgba(245, 247, 243, 0.8);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.media-card__title {
+  margin: 0;
+  max-width: 92%;
+  color: #ffffff;
+  font-size: var(--media-card-title-size);
+  line-height: 1.12;
+}
+
+.media-card__summary {
+  margin: 10px 0 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  color: rgba(245, 247, 243, 0.9);
+  font-size: var(--media-card-summary-size);
+  line-height: 1.7;
+  transition:
+    max-height 0.28s ease,
+    opacity 0.28s ease,
+    margin-top 0.28s ease;
+}
+
+.media-card:hover .media-card__summary {
+  max-height: var(--media-card-summary-max);
+  opacity: 1;
+  margin-top: 10px;
+}
+
+@media (max-width: 760px) {
+  .media-card__overlay {
+    padding: var(--media-card-padding-mobile);
+  }
+
+  .media-card__title {
+    max-width: 100%;
+    font-size: var(--media-card-title-size-mobile);
+  }
+
+  .media-card__summary {
+    font-size: var(--media-card-summary-size-mobile);
+  }
+}

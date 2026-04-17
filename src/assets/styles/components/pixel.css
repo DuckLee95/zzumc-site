@@ -1,0 +1,168 @@
+.pixel-panel,
+.mc-pixel-panel {
+  position: relative;
+  border: var(--pixel-border);
+  background: var(--pixel-panel-surface);
+  box-shadow: var(--pixel-panel-shadow);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease,
+    background 0.2s ease;
+}
+
+.pixel-panel:hover,
+.mc-pixel-panel:hover {
+  transform: translateY(2px);
+  background: var(--pixel-panel-surface-hover);
+  box-shadow: var(--pixel-panel-shadow-hover);
+}
+
+.pixel-mini-panel {
+  border: var(--pixel-border);
+  background:
+    linear-gradient(180deg, rgba(78, 82, 78, 0.24) 0%, rgba(36, 39, 36, 0.34) 100%),
+    rgba(255, 255, 255, 0.03);
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.08),
+    inset -2px -4px 0 rgba(0, 0, 0, 0.24),
+    0 4px 0 var(--pixel-border-color);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease,
+    background 0.18s ease;
+}
+
+.pixel-mini-panel:hover {
+  transform: translateY(2px);
+  background:
+    linear-gradient(180deg, rgba(90, 112, 76, 0.24) 0%, rgba(39, 45, 38, 0.34) 100%),
+    rgba(166, 226, 127, 0.05);
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.08),
+    inset -2px -3px 0 rgba(0, 0, 0, 0.22),
+    0 2px 0 var(--pixel-border-color);
+}
+
+.mc-pixel-inline-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border: var(--pixel-border);
+  background: #5d8b40;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.16),
+    inset -2px -4px 0 rgba(0, 0, 0, 0.24),
+    0 4px 0 var(--pixel-border-color);
+  transition:
+    transform 0.1s ease,
+    background 0.18s ease,
+    box-shadow 0.1s ease;
+}
+
+.mc-pixel-inline-link:hover {
+  transform: translateY(2px);
+  background: #6fa34b;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.16),
+    inset -2px -3px 0 rgba(0, 0, 0, 0.2),
+    0 2px 0 var(--pixel-border-color);
+}
+
+.mc-pixel-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: var(--pixel-border);
+  background: #727a6d;
+  color: #f2f6ef;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.25px;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.14),
+    inset -2px -3px 0 rgba(0, 0, 0, 0.24),
+    0 3px 0 var(--pixel-border-color);
+  transition:
+    transform 0.1s ease,
+    background 0.18s ease,
+    box-shadow 0.1s ease;
+}
+
+.mc-pixel-tag:hover {
+  transform: translateY(2px);
+  background: #7aa54f;
+  color: #ffffff;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.14),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.22),
+    0 1px 0 var(--pixel-border-color);
+}
+
+.mc-pixel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: var(--pixel-border);
+  background: #7cc043;
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow:
+    inset -2px -4px 0 rgba(0, 0, 0, 0.28),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.18),
+    0 4px 0 var(--pixel-border-color);
+  transition:
+    transform 0.1s ease,
+    background 0.2s ease,
+    box-shadow 0.1s ease;
+}
+
+.mc-pixel-btn:hover {
+  background: #90d55b;
+  transform: translateY(2px);
+  box-shadow:
+    inset -2px -3px 0 rgba(0, 0, 0, 0.24),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.18),
+    0 2px 0 var(--pixel-border-color);
+}
+
+.mc-pixel-btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    inset -2px -2px 0 rgba(0, 0, 0, 0.2),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.18),
+    0 0 0 var(--pixel-border-color);
+}
+
+.mc-pixel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: var(--pixel-border);
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.16),
+    inset -2px -4px 0 rgba(0, 0, 0, 0.18),
+    0 4px 0 var(--pixel-border-color);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.35px;
+}
+
+@media (max-width: 760px) {
+  .mc-pixel-btn {
+    min-height: 40px;
+    padding: 0 14px;
+  }
+}

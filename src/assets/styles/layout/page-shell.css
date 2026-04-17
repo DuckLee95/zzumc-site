@@ -1,0 +1,123 @@
+.page-shell {
+  --page-shell-background: var(--page-surface);
+  --page-shell-padding-top-current: var(--page-shell-padding-top);
+  --page-shell-padding-bottom-current: var(--page-shell-padding-bottom);
+  min-height: 100vh;
+  padding: var(--page-shell-padding-top-current) 0 var(--page-shell-padding-bottom-current);
+  background: var(--page-shell-background);
+}
+
+.page-shell--article {
+  --page-shell-padding-top-current: 0;
+  --page-shell-padding-bottom-current: 90px;
+}
+
+.page-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.page-back-link {
+  color: var(--green-soft);
+  font-weight: 900;
+  transition:
+    transform 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.page-back-link:hover {
+  transform: translateX(-2px);
+  opacity: 0.92;
+}
+
+.page-hero {
+  margin-bottom: 34px;
+}
+
+.page-hero h1,
+.page-hero-block h1 {
+  margin: 10px 0 12px;
+  font-size: var(--page-hero-title-size);
+  line-height: 1.06;
+}
+
+.page-hero-block {
+  padding: var(--page-hero-padding);
+  margin-bottom: 24px;
+}
+
+.page-hero-desc {
+  margin: 0;
+  max-width: var(--page-hero-max-width);
+  color: var(--text-soft);
+  font-size: var(--page-hero-body-size);
+  line-height: 1.9;
+}
+
+.page-sidebar-stack {
+  display: grid;
+  gap: var(--page-sidebar-gap);
+}
+
+.page-side-panel {
+  padding: 20px;
+}
+
+.page-side-panel h3 {
+  margin: 0 0 14px;
+  font-size: 22px;
+}
+
+.page-link-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.page-link-stack a,
+.page-tag-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  font-weight: 800;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease;
+}
+
+.page-link-stack a:hover,
+.page-tag-list a:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.page-note-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-soft);
+}
+
+.page-note-list li + li {
+  margin-top: 10px;
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    --page-shell-padding-top-current: var(--page-shell-padding-top-mobile);
+    --page-shell-padding-bottom-current: var(--page-shell-padding-bottom-mobile);
+  }
+
+  .page-shell--article {
+    --page-shell-padding-top-current: 0;
+    --page-shell-padding-bottom-current: 70px;
+  }
+
+  .page-hero-block {
+    padding: var(--page-hero-padding-mobile);
+  }
+}

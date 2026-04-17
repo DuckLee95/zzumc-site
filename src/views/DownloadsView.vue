@@ -1,16 +1,16 @@
 <template>
-  <div class="downloads-page upgraded-downloads-page">
+  <div class="downloads-page upgraded-downloads-page page-shell">
     <div class="container downloads-page-container">
-      <div class="downloads-topbar">
-        <RouterLink class="downloads-back-link" to="/">
+      <div class="downloads-topbar page-topbar">
+        <RouterLink class="page-back-link" to="/">
           ← 返回主页面
         </RouterLink>
       </div>
 
-      <div class="downloads-hero pixel-panel">
+      <div class="downloads-hero pixel-panel page-hero-block">
         <p class="section-kicker">DOWNLOAD CENTER</p>
         <h1>资源下载</h1>
-        <p class="downloads-hero-desc">
+        <p class="downloads-hero-desc page-hero-desc">
           这里集中提供客户端整合包、资源包、补丁文件和安装说明文档。
           后面你也可以继续扩展成真正的版本中心和下载仓库。
         </p>
@@ -122,10 +122,10 @@
           </div>
         </div>
 
-        <aside class="downloads-sidebar">
-          <div class="downloads-side-panel pixel-panel">
+        <aside class="downloads-sidebar page-sidebar-stack">
+          <div class="downloads-side-panel page-side-panel pixel-panel">
             <h3>下载分类</h3>
-            <div class="downloads-side-tags">
+            <div class="downloads-side-tags page-tag-list">
               <a href="#">全部</a>
               <a href="#">整合包</a>
               <a href="#">资源包</a>
@@ -134,9 +134,9 @@
             </div>
           </div>
 
-          <div class="downloads-side-panel pixel-panel">
+          <div class="downloads-side-panel page-side-panel pixel-panel">
             <h3>下载须知</h3>
-            <ul class="downloads-note-list">
+            <ul class="downloads-note-list page-note-list">
               <li>下载前先确认游戏版本。</li>
               <li>整合包建议配合帮助文档使用。</li>
               <li>补丁文件请按说明覆盖或导入。</li>
@@ -144,9 +144,9 @@
             </ul>
           </div>
 
-          <div class="downloads-side-panel pixel-panel">
+          <div class="downloads-side-panel page-side-panel pixel-panel">
             <h3>快速入口</h3>
-            <div class="downloads-quick-links">
+            <div class="downloads-quick-links page-link-stack">
               <RouterLink to="/docs">帮助文档</RouterLink>
               <RouterLink to="/news">最新消息</RouterLink>
               <RouterLink to="/contact">联系我们</RouterLink>
