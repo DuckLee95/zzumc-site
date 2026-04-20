@@ -60,7 +60,7 @@ src/
         quickstart.css           # 首页快速开始
         footer.css               # 页脚
       pages/
-        docs.css                 # 文档页专属样式
+        docs.css                 # 文档页专属样式 
         news.css                 # 新闻列表页专属样式
         news-detail.css          # 新闻详情页专属样式
         downloads.css            # 下载页专属样式
