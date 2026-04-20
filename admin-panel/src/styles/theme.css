@@ -1,0 +1,16 @@
+:root {
+  --cb-bg-main: #0f1318;
+  --cb-bg-panel: #1a2128;
+  --cb-bg-panel-2: #202933;
+  --cb-surface: linear-gradient(180deg, rgba(35, 45, 56, 0.95), rgba(23, 30, 38, 0.95));
+
+  --cb-text-main: #f2f8ff;
+  --cb-text-soft: #b6c7db;
+
+  --cb-border: 2px solid #000;
+
+  --cb-shadow-panel: inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -4px 0 rgba(0, 0, 0, 0.35),
+    0 5px 0 #000;
+  --cb-shadow-btn: inset 2px 2px 0 rgba(255, 255, 255, 0.16), inset -2px -4px 0 rgba(0, 0, 0, 0.3),
+    0 4px 0 #000;
+}
